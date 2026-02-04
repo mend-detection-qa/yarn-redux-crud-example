@@ -1,0 +1,100 @@
+{
+    "description": "Autotest configuration file for dependency tree detection validation",
+    "version": 1.5,
+    "base_config": {
+        "validate_scan_output": true,
+        "_comment_validate_scan_output": "Whether to validate the scan output/exit code. Options: true | false. Default: true",
+        "scan_output": {
+            "security_scan_report_conclusion": "failure",
+            "_comment_security_scan_report_conclusion": "Optional. Expected scan report conclusion. Options: 'success' | 'failure'. This validates the security scan result status. If not provided, this check will not be performed.",
+            "total_libs_scanned": {
+                "gte": 520
+            },
+            "_comment_total_libs_scanned": "Expected number of libraries scanned with comparison operator. Validates that the scan processed libraries."
+        },
+        "validate_dependency_tree": true,
+        "_comment_validate_dependency_tree": "Whether to validate the dependency tree. Options: true | false. Default: true",
+        "dependency_tree": {
+            "check_dependency_tree_detection_status": true,
+            "_comment_check_dependency_tree_detection_status": "Whether to check if dependency tree was successfully detected. Options: true | false. Default: true",
+            "expected_total_dependencies_number": {
+                "gte": 630
+            },
+            "expected_direct_dependencies_number": {
+                "eq": 35
+            },
+            "expected_transitive_dependencies_number": {
+                "gte": 600
+            },
+            "_comment_expected_dependencies_number": "Optional. Expected number of dependencies with comparison operator. Operators: gt (>), gte (>=), lt (<), lte (<=), eq (==). If not provided, this check will not be performed.",
+            "direct_dependencies_names_list": {
+                "eq": [
+                    "mongoose-type-email-1.0.5.tgz",
+                    "cors-2.8.3.tgz",
+                    "react-dom-15.4.2.tgz",
+                    "feathers-hooks-2.0.0.tgz",
+                    "classnames-2.2.5.tgz",
+                    "redux-devtools-extension-2.13.0.tgz",
+                    "request-promise-4.2.0.tgz",
+                    "redux-3.6.0.tgz",
+                    "feathers-2.1.1.tgz",
+                    "eslint-3.19.0.tgz",
+                    "redux-form-6.6.1.tgz",
+                    "feathers-mongoose-5.0.3.tgz",
+                    "mocha-3.2.0.tgz",
+                    "react-15.4.2.tgz",
+                    "axios-0.16.0.tgz",
+                    "semantic-ui-css-2.2.10.tgz",
+                    "feathers-configuration-0.4.1.tgz",
+                    "compression-1.6.2.tgz",
+                    "helmet-3.5.0.tgz",
+                    "mongoose-4.9.5.tgz",
+                    "semantic-ui-react-0.67.2.tgz",
+                    "body-parser-1.17.1.tgz",
+                    "redux-thunk-2.2.0.tgz",
+                    "feathers-rest-1.7.2.tgz",
+                    "request-2.81.0.tgz",
+                    "redux-promise-middleware-4.2.0.tgz",
+                    "react-router-dom-4.0.0.tgz",
+                    "feathers-errors-2.6.3.tgz",
+                    "feathers-hooks-common-3.0.0.tgz",
+                    "winston-2.3.1.tgz",
+                    "mddir-1.1.0.tgz",
+                    "feathers-socketio-1.6.0.tgz",
+                    "serve-favicon-2.4.2.tgz",
+                    "react-redux-5.0.3.tgz",
+                    "nodemon-1.11.0.tgz"
+                ]
+            },
+            "_comment_dependencies_names_list": "Optional. Check specific libraries in direct dependencies. Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed.",
+            "validate_agent_versions": true,
+            "expected_agent_version": "",
+            "expected_plugin_version": "",
+            "_comment_agent_versions": "Optional. Expected agent and plugin versions. If not provided, this check will not be performed."
+        },
+        "validate_vulnerabilities_table": true,
+        "_comment_validate_vulnerabilities_table": "Whether to validate the vulnerabilities table. Options: true | false. Default: true",
+        "vulnerabilities_table": {
+            "check_vulnerabilities_table_structure": true,
+            "expected_total_vulnerabilities_number": {
+                "gte": 0
+            },
+            "vulnerabilities_ids_list": {
+                "contains": []
+            },
+            "_comment_ids_names_list": "Optional. Check specific libs ids (WS-2018-0111, CVE-2021-44906). Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed.",
+            "vulnerabilities_names_list": {
+                "contains": []
+            },
+            "_comment_vulnerabilities_names_list": "Optional. Check specific libs names (minimist-0.0.8.tgz). Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed."
+        },
+        "validate_scanner_logs": true,
+        "_comment_validate_scanner_logs": "Whether to validate scanner logs. Options: true | false. Default: false",
+        "logs": {
+            "check_scanner_logs": true,
+            "_comment_check_scanner_logs": "Whether to check scanner logs and attach them to Report Portal. Options: true | false. Default: true",
+            "expected_log_lines": [],
+            "_comment_expected_log_lines": "Optional. List of log lines to validate. Each entry should have an 'operator' (eq or regex) and 'value' (string or regex pattern). Example: [{'operator': 'eq', 'value': 'Python version: 3.11'}, {'operator': 'regex', 'value': 'Python version: \\d+\\.\\d+'}]. If not provided, only log attachment will be performed."
+        }
+    }
+}
